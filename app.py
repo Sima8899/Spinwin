@@ -1,13 +1,12 @@
-import os
 import requests
 from flask import Flask, request
 from telegram import Update, Bot
 from telegram.ext import Dispatcher, CommandHandler, MessageHandler, filters, CallbackContext
 
-# Environment variables
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
-MERCHANT_ID = os.getenv("MERCHANT_ID")
-API_KEY = os.getenv("API_KEY")
+# Hardcoded Config
+TELEGRAM_TOKEN = "7808400054:AAGL0Jx3Q3j_hYw8k77C8pYW8yQ4HbBIkjc"
+MERCHANT_ID = "34215172"
+API_KEY = "b485e9b4ca554123a2705709a30a284f"
 
 app = Flask(__name__)
 bot = Bot(token=TELEGRAM_TOKEN)
@@ -29,7 +28,6 @@ def deposit(update: Update, context: CallbackContext):
     qr_image = "https://i.ibb.co/bM6c4k3T/BHARATPE-QR-3.png"
     update.message.reply_photo(qr_image, caption="Send ₹50 to this BharatPe QR.\nThen wait 20 seconds, your payment will be verified automatically.")
 
-    # This is a demo fixed txn ID for now
     txn_id = "510100347135"
     url = "https://api.bharatpe.com/v1/transactions/verify"
 
